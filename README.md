@@ -1,6 +1,5 @@
 # AutoLoc
 
-
 ## Présentation
 
 AutoLoc est une application de gestion d'une agence de location de véhicules.
