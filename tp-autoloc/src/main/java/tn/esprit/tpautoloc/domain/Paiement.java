@@ -23,5 +23,11 @@ public class Paiement {
 
     private BigDecimal montant;
     private LocalDate datePaiement;
+
+    @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+    @ManyToOne
+    @JoinColumn(name = "contrat_id")
+    private Contrat contrat;
 }

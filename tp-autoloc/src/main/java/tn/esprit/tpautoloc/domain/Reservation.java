@@ -22,5 +22,19 @@ public class Reservation {
 
     private LocalDate dateDebut;
     private LocalDate dateFin;
+
+    @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicule_id")
+    private Vehicule vehicule;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contrat_id")
+    private Contrat contrat;
 }

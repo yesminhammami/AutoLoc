@@ -9,6 +9,8 @@ import tn.esprit.tpautoloc.domain.enums.CategorieVehicule;
 import tn.esprit.tpautoloc.domain.enums.StatutVehicule;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "vehicule")
@@ -25,7 +27,28 @@ public class Vehicule {
     private String immatriculation;
     private String marque;
     private String modele;
+
+    @Enumerated(EnumType.STRING)
     private CategorieVehicule categorie;
+
     private BigDecimal tarifJournalier;
+
+    @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Maintenance> maintenances = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "vehicule_equipements",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id"))
+    private List<Equipement> equipements = new ArrayList<>();
 }
