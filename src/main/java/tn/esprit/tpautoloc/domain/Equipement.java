@@ -24,4 +24,28 @@ public class Equipement {
 
     @ManyToMany(mappedBy = "equipements")
     private List<Vehicule> vehicules = new ArrayList<>();
+
+    public Long getId() {
+        return idEquipement;
+    }
+
+    public void setId(Long idEquipement) {
+        this.idEquipement = idEquipement;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public List<Vehicule> getVehicules() {
+        return vehicules;
+    }
+
+    public void setVehicules(List<Vehicule> vehicules) {
+        this.vehicules = vehicules;
+    }
 }
